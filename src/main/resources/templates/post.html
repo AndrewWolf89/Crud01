@@ -1,0 +1,59 @@
+<!--Html-->
+<!DOCTYPE html>
+<html lang="es">
+<!--Head-->
+
+<head>
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+
+	<script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+	<script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+
+	<meta charset="UTF-8" />
+	<title>Sitio del Lobo</title>
+</head>
+<!--End Head-->
+<!--Body-->
+
+<body>
+	<!--Nav-->
+	<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Sayonara Tequila</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" th:href="@{/}" href="#">Inicio</a>
+					<a class="nav-link" href="#">Galeria</a>
+					<a class="nav-link" href="#">Post</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	</div>
+	</div>
+	<!--End Nav-->
+	<!--Header-->
+	<div class="jumbotron">
+		<h1 th:text="${post.titulo}" class="display-4" Sup dudes!> </h1>
+		<p th:text="${post.descripcion}" class="Lead" Sup dudes!x2> </p>
+		<hr class="my-4">
+		<p th:text="${post.fecha}">Un test aca</p>
+		<a class="btn btn-primary btn-lg" href="#" role="button">Boton maybe</a>
+	</div>
+
+	<!--End Header-->
+	<!--Footer-->
+	<footer>
+		<p>BytePL</p>
+	</footer>
+	<!--End Footer-->
+
+</body>
+<!--End Body-->
+
+</html>
+<!--End Html-->
