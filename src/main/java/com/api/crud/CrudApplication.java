@@ -1,27 +1,37 @@
 package com.api.crud;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.api.crud.components.PostComponent;
-import com.api.crud.models.Conexion;
-import com.api.crud.services.impl.PostServiceImpl;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
 public class CrudApplication implements CommandLineRunner {
 	@Autowired
-	@Qualifier("beanConexion")
-	private Conexion conexion;
+	private JdbcTemplate jdbcTemplate;
 	
-	@Autowired
-	@Qualifier("com.api.crud.components.PostComponent")
-	public PostComponent postComponent;
+	@Value("${crud.jdbc.import.ruta}")
+	private String ruta;
 	
-	@Autowired
-	public PostServiceImpl postService;
+	@Value("${crud.jdbc.import}")
+	private String importar;
+	
+	public CrudApplication() {
+		
+	}
+	
+	Log log = LogFactory.getLog(getClass());
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CrudApplication.class, args);
@@ -29,10 +39,20 @@ public class CrudApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		postService.validationId(postComponent.getPosts())
-			.forEach((post) -> {
-				System.out.println(post.getTitulo());
-			});
+		
+		if(importar.equalsIgnoreCase("true")) {
+			Path path = Paths.get(ruta);
+			
+			
+			try(BufferedReader bufferedReader = Files.newBufferedReader(path, Charset.forName("UTF-8"))) {
+				String line;
+				while((line = bufferedReader.readLine()) != null) {
+					jdbcTemplate.execute(line);
+				}
+			} catch (IOException ex) {
+				
+			}
+		}
+		log.info("Tenemos esta cantidad de permisos: " + jdbcTemplate.queryForObject("SELECT count(*) FROM permiso;", Integer.class));
 	}
-
 }

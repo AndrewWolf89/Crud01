@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 import com.api.crud.models.UserPost;
 import com.api.crud.services.PostService;
 
-@Service
-public class PostServiceImpl implements PostService {
+@Service("serviceDos")
+public class PostServiceImpl02 implements PostService {
 	private final Log log = LogFactory.getLog(getClass());
 	
 	@Override
 	public List<UserPost> validation(List<UserPost> posts) throws NullPointerException {
-		log.info("Servicio 1");
-		for(UserPost post : posts) {
-			if(post.getTitulo()==null) {
-				throw new NullPointerException("El titulo esta nulo");
+		log.info("Servicio 2");
+		for (UserPost post : posts) {
+			if(post.getId() == 0) {
+				throw new NullPointerException("El Id esta nulo");
 			}
 		}
 		
@@ -29,6 +29,4 @@ public class PostServiceImpl implements PostService {
 	public void addClass(Class clazz) {
 		System.out.println(clazz.getName());
 	}
-	
-
 }
