@@ -1,0 +1,88 @@
+<!--Html-->
+<!DOCTYPE html>
+<html lang="es">
+<!--Head-->
+
+<head>
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+
+	<script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+	<script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+
+	<meta charset="UTF-8" />
+	<title>Sitio del Lobo</title>
+</head>
+<!--End Head-->
+<!--Body-->
+
+<body>
+	<!--Nav-->
+	<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Sayonara Tequila</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" th:href="@{/}" href="#">Inicio</a>
+					<a class="nav-link" href="#">Galeria</a>
+					<a class="nav-link" href="#">Post</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!--End Nav-->
+	<!--Cards-->
+	<div class="container">
+		<div class="row">
+			<div th:each="post : ${posts}" class="col-3">
+				<div class="card" style="width: 18rem;">
+					<img th:src="${post.urlImg}" src="../static/img/post.png" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 th:text="${post.titulo}" class="card-title">Fuck it</h5>
+						<p th:text="${post.descripcion}" class="card-text">Contenido de la carta.</p>
+						<a th:href="@{/post?id=} + ${post.id}" class="btn btn-primary">Click ahora</a>
+					</div>
+				</div>
+			</div>
+			<!--End Cards-->
+
+
+
+			<!--Pagination-->
+			<div class="row">
+				<div class="col-12">
+					<nav aria-label="Ejemplo de paginacion">
+						<ul class="pagination justify-content-center">
+							<li class="page-item">
+								<a class="page-link" href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+			</div>
+			<!--End Pagination-->
+			<!--Footer-->
+			<footer>
+				<p>BytePL</p>
+			</footer>
+			<!--End Footer-->
+
+</body>
+<!--End Body-->
+
+</html>
+<!--End Html-->

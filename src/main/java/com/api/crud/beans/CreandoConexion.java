@@ -27,8 +27,8 @@ public class CreandoConexion {
 	@Bean
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=blog;domain=User8242-PC;trustServerCertificate=true");
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/blog");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("none");
 		return dataSource;
